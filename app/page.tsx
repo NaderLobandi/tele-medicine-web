@@ -3,33 +3,28 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function Home() {
   return (
-    <main className="stack">
-      <section className="logo">
-        <h1>Kinematic Recorder</h1>
-        <p>Tele-Medicine Research Platform</p>
-      </section>
-
-      <section className="card stack">
-        <h2>Secure Access</h2>
-        <p className="copy">Sign in to start synchronized camera + microphone recording and upload test files to Vercel Blob.</p>
+    <main>
+      <section className="card" style={{ display: "grid", gap: "1rem" }}>
+        <h1 style={{ margin: 0 }}>iPhone Video Recording POC</h1>
+        <p style={{ margin: 0 }}>
+          This app captures synchronized video + audio using one combined media stream and uploads test recordings to Vercel Blob.
+        </p>
 
         <SignedOut>
-          <div className="nav-actions">
-            <Link className="btn" href="/sign-in">
+          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <Link href="/sign-in" className="button">
               Sign in
             </Link>
-            <Link className="btn btn-secondary" href="/sign-up">
+            <Link href="/sign-up" className="button buttonAlt">
               Create account
             </Link>
           </div>
         </SignedOut>
 
         <SignedIn>
-          <div className="button-group">
-            <Link className="btn" href="/record">
-              Open Recorder
-            </Link>
-          </div>
+          <Link href="/record" className="button">
+            Go to Recorder
+          </Link>
         </SignedIn>
       </section>
     </main>

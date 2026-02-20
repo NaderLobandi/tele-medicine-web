@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
+import Link from "next/link";
+import { ClerkProvider, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,8 +17,23 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <div className="background-grid" />
-          <div className="app-shell">{children}</div>
+          <header className="nav">
+            <Link href="/" style={{ textDecoration: "none", fontWeight: 700 }}>
+              Tele-Med POC
+            </Link>
+            <div className="navLinks">
+              <Link href="/record">Record</Link>
+              <SignedOut>
+                <Link className="button buttonAlt" href="/sign-in">
+                  Sign in
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
+            </div>
+          </header>
+          {children}
         </body>
       </html>
     </ClerkProvider>
